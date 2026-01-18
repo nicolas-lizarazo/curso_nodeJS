@@ -8,8 +8,8 @@ export interface SaveFileUseCase {
 export interface Options {
     fileContent: string;
     fileDestination: string;
-    fileName: string;
-    fileExtension: string;
+    fileName?: string;
+    fileExtension?: string;
 }
                 
 export class SaveFile implements SaveFileUseCase {
@@ -26,7 +26,7 @@ export class SaveFile implements SaveFileUseCase {
         try {
             fs.mkdirSync(fileDestination, {recursive: true})
             fs.writeFileSync(`${fileDestination}/${fileName}.${fileExtension}`, fileContent);
-            console.log('File crated!');
+            console.log('File created!');
             return true;
         } catch (error) {
             console.log(error);

@@ -1,5 +1,5 @@
 import { CreateTable } from "../domain/use-cases/create-table.use-case.js";
-import { SaveFile } from "../domain/use-cases/seve-file-use-case.js";
+import { SaveFile } from "../domain/use-cases/save-file-use-case.js";
 
 interface RunOptions {
     base: number;
