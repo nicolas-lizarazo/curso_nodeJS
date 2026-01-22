@@ -42,7 +42,7 @@
     "moduleDetection": "force",
     "skipLibCheck": true,
   },
-  "exclude": ["node_modules", "jest.config.ts", "dist", "src/**/*.test.ts"],
+  "exclude": ["node_modules", "jest.config.ts", "dist"], // "src/**/*.test.ts
   "ts-node": {
     "esm": true,
   }

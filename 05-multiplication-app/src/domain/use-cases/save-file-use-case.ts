@@ -7,7 +7,7 @@ export interface SaveFileUseCase {
 
 export interface Options {
     fileContent: string;
-    fileDestination: string;
+    fileDestination?: string;
     fileName?: string;
     fileExtension?: string;
 }
@@ -19,17 +19,17 @@ export class SaveFile implements SaveFileUseCase {
 
     execute( { 
         fileContent, 
-        fileName,
-        fileDestination,
-        fileExtension, 
+        fileName = 'multiplication_table',
+        fileDestination = 'outputs/table',
+        fileExtension = 'txt', 
     }: Options): boolean {
         try {
             fs.mkdirSync(fileDestination, {recursive: true})
             fs.writeFileSync(`${fileDestination}/${fileName}.${fileExtension}`, fileContent);
-            console.log('File created!');
+            // console.log('File created!');
             return true;
         } catch (error) {
-            console.log(error);
+            // console.log(error); // winston
             return false;
         }
     };
