@@ -1,8 +1,13 @@
-import { CronJob } from "cron";
+
 import { CronService } from "./cron/cron-service";
 import { CheckService } from "../domain/use-cases/checks/check-service";
+import { LogRepositoryImpl } from "../infrastructure/repositories/log.repository.implementation";
+import { FileSystemDataSource } from "../infrastructure/datasources/file-system.datasource";
 
-//
+const fileSystemLogRepository = new LogRepositoryImpl(
+  new FileSystemDataSource()
+)
+
 export class Server {
   public static start() {
     console.log("Server started");
@@ -13,10 +18,11 @@ export class Server {
       () => {
         // si se crea un servidor por ejemplo con json server
         // new CheckService().execute('http://localhost:3000/comments');
-        const url = 'https://google.com';
+        const url = 'http://localhost:3000';
         new CheckService(
+          fileSystemLogRepository,
           () => console.log(`${url} is ok`),
-          ( error ) => console.log('error')
+          ( error ) => console.log(error)
         ).execute( url );
       } // onTick
     );
